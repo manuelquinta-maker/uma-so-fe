@@ -1,0 +1,42 @@
+{
+  "automatico": true,
+  "segundos": 6,
+  "slides": [
+    {
+      "antetitulo": "",
+      "titulo": "",
+      "texto": "",
+      "botao_texto": "",
+      "botao_ligacao": "",
+      "imagem": "/tema.jpg",
+      "imagem_descricao": "Aguarela do vale e do rio, com o símbolo Uma Só Fé: o monte, a cruz e as águas."
+    },
+    {
+      "antetitulo": "Quatro comunidades, uma só fé",
+      "titulo": "Sejam bem-vindos",
+      "texto": "Consulte o horário das missas desta semana nas paróquias de Parada de Bouro, Soengas, Tabuaças e Vilar Chão.",
+      "botao_texto": "Ver horário das missas",
+      "botao_ligacao": "#horario",
+      "imagem": "",
+      "imagem_descricao": ""
+    },
+    {
+      "antetitulo": "Catequese",
+      "titulo": "Inscrições abertas",
+      "texto": "Inscrições para o novo ano: [período]. Crianças, adolescentes e famílias a caminho dos sacramentos.",
+      "botao_texto": "Saber mais",
+      "botao_ligacao": "#catequese",
+      "imagem": "",
+      "imagem_descricao": ""
+    },
+    {
+      "antetitulo": "Soengas · 11 de novembro",
+      "titulo": "Festa de São Martinho",
+      "texto": "[Programa das celebrações e da festa]",
+      "botao_texto": "Ver avisos",
+      "botao_ligacao": "#avisos",
+      "imagem": "",
+      "imagem_descricao": ""
+    }
+  ]
+}

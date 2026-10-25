@@ -1,0 +1,178 @@
+# Backoffice das Paróquias (Decap CMS)
+# Já preenchido para manuelquinta-maker/uma-so-fe e uma-so-fe.manuel-quinta.workers.dev
+
+backend:
+  name: github
+  repo: manuelquinta-maker/uma-so-fe           # ALTERAR: o seu utilizador GitHub / nome do repositório
+  branch: main
+  base_url: https://uma-so-fe.manuel-quinta.workers.dev # ALTERAR: o endereço que o Cloudflare lhe der
+  auth_endpoint: api/auth
+  commit_messages:
+    update: "Atualizar {{collection}} ({{slug}})"
+
+locale: pt
+site_url: /
+display_url: /
+logo_url: /logo-simbolo.png
+
+media_folder: uploads
+public_folder: /uploads
+
+collections:
+  - name: conteudo
+    label: Conteúdo do site
+    editor:
+      preview: false
+    files:
+
+      - name: slides
+        label: "Slideshow (topo da página)"
+        file: slides.json
+        format: json
+        fields:
+          - { name: automatico, label: "Passar automaticamente", widget: boolean, default: true }
+          - { name: segundos, label: "Segundos por destaque", widget: number, value_type: int, min: 3, max: 15, default: 6 }
+          - name: slides
+            label: Destaques
+            label_singular: destaque
+            widget: list
+            summary: "{{fields.titulo}}"
+            fields:
+              - { name: antetitulo, label: "Antetítulo (linha pequena por cima)", widget: string, required: false }
+              - { name: titulo, label: "Título", widget: string, required: false, hint: "Sem título, o destaque mostra apenas a imagem (ex.: a aguarela do tema)." }
+              - { name: texto, label: "Texto", widget: text, required: false }
+              - { name: botao_texto, label: "Texto do botão", widget: string, required: false }
+              - { name: botao_ligacao, label: "Ligação do botão", widget: string, required: false, hint: "Ex.: #horario, #catequese, #avisos, ou um endereço https://…" }
+              - { name: imagem, label: "Fotografia (horizontal, mín. 1600 px de largura)", widget: image, required: false }
+              - { name: imagem_descricao, label: "Descrição da fotografia (para invisuais)", widget: string, required: false }
+
+      - name: avisos
+        label: "Avisos e notícias"
+        file: avisos.json
+        format: json
+        fields:
+          - name: avisos
+            label: Avisos
+            label_singular: aviso
+            widget: list
+            summary: "{{fields.data}} · {{fields.titulo}}"
+            add_to_top: true
+            fields:
+              - { name: data, label: "Data", widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false }
+              - { name: titulo, label: "Título", widget: string }
+              - { name: resumo, label: "Resumo (uma ou duas linhas)", widget: text, required: false }
+              - { name: texto, label: "Texto completo", widget: text, required: false }
+              - { name: imagem, label: "Fotografia", widget: image, required: false }
+              - { name: destaque, label: "Mostrar em destaque no topo", widget: boolean, default: false, hint: "Apenas o aviso mais recente marcado aparece em destaque." }
+
+      - name: horario
+        label: "Horário das missas"
+        file: horario.json
+        format: json
+        fields:
+          - { name: pdf, label: "PDF do horário (exportado da app Missas)", widget: file, required: false, hint: "Use o PDF 'para expor' (sem pagamentos). Pode incluir vários lugares de culto." }
+          - { name: ler_pdf, label: "Ler as missas a partir do PDF", widget: boolean, default: true, hint: "O site mostra dia, lugar e hora; clicando, as intenções. Desligado: usa a lista manual abaixo." }
+          - { name: mostrar_intencoes, label: "Mostrar as intenções ao clicar na data", widget: boolean, default: true }
+          - { name: mostrar_mc, label: "Mostrar também quem manda celebrar (m.c.)", widget: boolean, default: false, hint: "Desligado por defeito, para proteger os dados pessoais de quem pede a missa." }
+          - { name: nota, label: "Nota por baixo da lista", widget: string, required: false }
+          - name: missas
+            label: "Lista manual (só usada sem PDF)"
+            label_singular: missa
+            widget: list
+            required: false
+            summary: "{{fields.dia}} · {{fields.local}} · {{fields.hora}}"
+            fields:
+              - { name: dia, label: "Dia", widget: string, hint: "Ex.: Domingo, 1 nov." }
+              - { name: local, label: "Lugar de culto", widget: string }
+              - { name: hora, label: "Hora", widget: string, required: false }
+
+      - name: paroquias
+        label: "As paróquias"
+        file: paroquias.json
+        format: json
+        fields:
+          - name: paroquias
+            label: Paróquias
+            label_singular: paróquia
+            widget: list
+            summary: "{{fields.nome}}"
+            fields:
+              - { name: nome, label: "Nome", widget: string }
+              - { name: padroeiro, label: "Padroeiro", widget: string, required: false }
+              - { name: festa, label: "Festa do padroeiro", widget: string, required: false }
+              - { name: lugares, label: "Igreja e capelas", widget: string, required: false }
+              - { name: historia, label: "Breve história", widget: text, required: false }
+              - { name: foto, label: "Fotografia da igreja", widget: image, required: false }
+
+      - name: catequese
+        label: "Catequese"
+        file: catequese.json
+        format: json
+        fields:
+          - { name: texto, label: "Texto", widget: text }
+          - { name: horarios, label: "Horários", widget: string, required: false }
+          - { name: inscricoes_abertas, label: "Inscrições abertas", widget: boolean, default: false, hint: "Desligado: o botão de inscrição não aparece no site." }
+          - { name: abertura, label: "Abrir automaticamente em (opcional)", widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, required: false, hint: "Com o interruptor ligado, o botão só aparece a partir deste dia." }
+          - { name: fecho, label: "Fechar automaticamente depois de (opcional)", widget: datetime, format: "YYYY-MM-DD", date_format: "DD/MM/YYYY", time_format: false, required: false, hint: "O botão desaparece no dia seguinte." }
+          - { name: mensagem_fechadas, label: "Mensagem quando as inscrições estão fechadas", widget: string, required: false, default: "As inscrições abrem em setembro. Para mais informações, contacte o cartório." }
+          - { name: texto_botao, label: "Texto do botão", widget: string, default: "Inscrever na catequese" }
+          - { name: ligacao_inscricao, label: "Ligação de inscrição", widget: string, required: false, hint: "Portal de A Paróquia ou formulário Google (https://…). Sem ligação, o botão não aparece." }
+
+      - name: contactos
+        label: "Contactos e cartório"
+        file: contactos.json
+        format: json
+        fields:
+          - { name: paroco, label: "Pároco", widget: string }
+          - { name: telefone, label: "Telefone", widget: string, required: false }
+          - { name: email, label: "Email", widget: string, required: false }
+          - { name: cartorio, label: "Cartório (local, dias e horas)", widget: string, required: false }
+          - { name: morada, label: "Morada", widget: string, required: false }
+          - { name: mapa, label: "Ligação para o mapa (Google Maps)", widget: string, required: false }
+          - { name: impresso_missa, label: "Impresso de pedido de missa (PDF)", widget: file, required: false }
+
+      - name: donativos
+        label: "Donativos"
+        file: donativos.json
+        format: json
+        fields:
+          - { name: texto, label: "Texto de apresentação", widget: text }
+          - { name: descritivo, label: "Indicação para o descritivo", widget: string, required: false }
+          - { name: recibo, label: "Informação sobre recibos", widget: string, required: false }
+          - name: contas
+            label: "Contas das paróquias"
+            label_singular: conta
+            widget: list
+            summary: "{{fields.paroquia}}"
+            fields:
+              - { name: paroquia, label: "Paróquia", widget: string }
+              - { name: titular, label: "Titular da conta", widget: string, required: false, hint: "Ex.: Fábrica da Igreja Paroquial de …" }
+              - { name: iban, label: "IBAN", widget: string, required: false, pattern: ['^\s*PT\s*50(\s*\d){21}\s*$', 'IBAN português: PT50 seguido de 21 algarismos'] }
+              - { name: mbway, label: "Número MB WAY (opcional)", widget: string, required: false }
+
+      - name: extras
+        label: "Liturgia e Papa"
+        file: extras.json
+        format: json
+        fields:
+          - { name: liturgia, label: "Mostrar a Liturgia do dia", widget: boolean, default: true, hint: "Celebração do dia a partir do liturgia.pt, com ligação para as leituras." }
+          - { name: papa, label: "Mostrar a caixa das publicações do Papa", widget: boolean, default: true }
+          - { name: papa_conta, label: "Conta do X a mostrar", widget: string, default: "Pontifex_pt", hint: "Sem @. Ex.: Pontifex_pt" }
+
+      - name: noticias
+        label: "Notícias da Igreja (feeds)"
+        file: noticias.json
+        format: json
+        fields:
+          - { name: mostrar, label: "Mostrar a caixa de notícias", widget: boolean, default: true }
+          - { name: quantidade, label: "Número de notícias", widget: number, value_type: int, min: 3, max: 20, default: 6 }
+          - name: fontes
+            label: "Fontes"
+            label_singular: fonte
+            widget: list
+            max: 6
+            summary: "{{fields.nome}}"
+            hint: "Endereços de feeds RSS ou Atom. As notícias atualizam de 30 em 30 minutos."
+            fields:
+              - { name: nome, label: "Nome a mostrar", widget: string, hint: "Ex.: Agência Ecclesia, Arquidiocese de Braga" }
+              - { name: feed, label: "Endereço do feed (RSS/Atom)", widget: string, pattern: ['^https?://', 'Tem de começar por https://'] }

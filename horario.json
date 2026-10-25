@@ -1,0 +1,9 @@
+{
+  "nota": "Gerado na app Missas · atualizado semanalmente",
+  "pdf": "",
+  "missas": [
+    { "dia": "Sábado, 31 out.", "local": "[Lugar de culto]", "hora": "[hora]" },
+    { "dia": "Domingo, 1 nov.", "local": "[Lugar de culto]", "hora": "[hora]" },
+    { "dia": "Domingo, 1 nov.", "local": "[Lugar de culto]", "hora": "[hora]" }
+  ]
+}

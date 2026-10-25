@@ -1,0 +1,11 @@
+{
+  "texto": "A vida das nossas comunidades sustenta-se com a generosidade de todos. Pode contribuir por transferência bancária para a paróquia que deseja apoiar.",
+  "descritivo": "Indique no descritivo: Donativo + o seu nome.",
+  "recibo": "Se precisar de recibo, envie o comprovativo com o seu nome e NIF para o email do cartório.",
+  "contas": [
+    { "paroquia": "Parada de Bouro", "titular": "[titular da conta]", "iban": "", "mbway": "" },
+    { "paroquia": "Soengas", "titular": "[titular da conta]", "iban": "", "mbway": "" },
+    { "paroquia": "Tabuaças", "titular": "[titular da conta]", "iban": "", "mbway": "" },
+    { "paroquia": "Vilar Chão", "titular": "[titular da conta]", "iban": "", "mbway": "" }
+  ]
+}

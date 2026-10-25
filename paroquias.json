@@ -1,0 +1,8 @@
+{
+  "paroquias": [
+    { "nome": "Parada de Bouro", "padroeiro": "São Julião", "festa": "", "lugares": "", "historia": "", "foto": "" },
+    { "nome": "Soengas", "padroeiro": "São Martinho", "festa": "11 de novembro", "lugares": "", "historia": "", "foto": "" },
+    { "nome": "Tabuaças", "padroeiro": "São Julião", "festa": "", "lugares": "", "historia": "", "foto": "" },
+    { "nome": "Vilar Chão", "padroeiro": "São Paio", "festa": "", "lugares": "", "historia": "", "foto": "" }
+  ]
+}

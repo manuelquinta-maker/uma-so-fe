@@ -1,0 +1,225 @@
+/* Tema "Uma Só Fé" — aguarela do vale: papel, rio, sálvia e ouro */
+:root {
+  --tinta: #2C3A4A;          /* azul-ardósia do título */
+  --tinta-escura: #1C2733;
+  --rio: #6F92B2;
+  --rio-escuro: #3F6688;     /* ligações (contraste 5,6:1 sobre o papel) */
+  --rio-claro: #DDE8EF;
+  --salvia: #8FA77A;
+  --salvia-claro: #E7ECDC;
+  --ouro: #A8935A;
+  --ouro-claro: #F1EAD6;
+  --papel: #F8F6F0;
+  --cartao: #FFFEFA;
+  --linha: #E6E1D3;
+  --texto: #2E3640;
+  --texto-suave: #5A6370;
+  --titulos: 'Montserrat', system-ui, sans-serif;
+  --sans: 'Source Sans 3', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --serif: 'Lora', Georgia, serif;
+  --raio: 16px;
+}
+
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; scroll-padding-top: 96px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { margin: 0; font-family: var(--sans); color: var(--texto); background: var(--papel); font-size: 17px; line-height: 1.6; }
+img { max-width: 100%; display: block; }
+a { color: var(--rio-escuro); font-weight: 600; }
+a:hover { color: var(--tinta); }
+h2 { font-family: var(--titulos); font-weight: 600; color: var(--tinta); font-size: 28px; line-height: 1.2; letter-spacing: .01em; margin: 0 0 16px; }
+h3 { font-family: var(--titulos); }
+p { margin: 0 0 12px; }
+.so-leitores { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+.saltar { position: absolute; left: -9999px; top: 8px; background: #fff; padding: 10px 16px; z-index: 100; }
+.saltar:focus { left: 8px; }
+
+.contentor { max-width: 1200px; margin: 0 auto; padding-left: 24px; padding-right: 24px; }
+
+/* Título de secção com o traço de ouro do monte */
+.bloco > h2, .coluna-larga > h2 { display: flex; align-items: center; gap: 14px; }
+.bloco > h2::after, .coluna-larga > h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--ouro) 0, var(--linha) 120px); }
+
+/* Topo */
+.topo { background: rgba(248,246,240,.96); border-bottom: 1px solid var(--linha); position: sticky; top: 0; z-index: 50; backdrop-filter: blur(6px); }
+.topo__linha { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 28px; padding-top: 12px; padding-bottom: 12px; }
+.marca { display: flex; align-items: center; gap: 14px; text-decoration: none; color: var(--tinta); min-width: 0; }
+.marca img { height: 46px; width: auto; }
+.marca > span { display: flex; flex-direction: column; line-height: 1.2; }
+.marca__nome { font-family: var(--titulos); font-size: 20px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.marca__sub { font-family: var(--titulos); font-size: 12px; font-weight: 500; color: var(--texto-suave); letter-spacing: .02em; }
+.menu { display: flex; flex-wrap: wrap; gap: 2px 22px; font-family: var(--titulos); font-size: 14px; }
+.menu a { text-decoration: none; padding: 10px 0; color: var(--tinta); font-weight: 500; border-bottom: 2px solid transparent; }
+.menu a:hover { border-bottom-color: var(--ouro); }
+.menu-botao { display: none; width: 44px; height: 44px; border: 1px solid var(--linha); background: var(--cartao); border-radius: 12px; color: var(--tinta); align-items: center; justify-content: center; cursor: pointer; }
+
+/* Slideshow */
+.slideshow { position: relative; height: min(56vw, 640px); min-height: 420px; overflow: hidden; background: var(--rio-claro); }
+.slideshow__faixa { position: absolute; inset: 0; }
+.slide { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity 1s ease, visibility 1s; }
+.slide.ativo { opacity: 1; visibility: visible; }
+@media (prefers-reduced-motion: reduce) { .slide { transition: none; } }
+.slide__imagem { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; background: var(--rio-claro) url('/tema-rio.jpg') center / cover no-repeat; }
+.slide__texto { position: absolute; left: max(24px, calc((100% - 1200px) / 2 + 24px)); bottom: 72px; width: min(520px, calc(100% - 48px)); background: rgba(255,254,250,.93); border: 1px solid var(--linha); border-top: 3px solid var(--ouro); border-radius: var(--raio); padding: 26px 28px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 12px 32px rgba(44,58,74,.12); }
+.slide__kicker { margin: 0; font-family: var(--titulos); font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--rio-escuro); }
+.slide__titulo { margin: 0; font-family: var(--titulos); font-size: 34px; line-height: 1.12; font-weight: 600; color: var(--tinta); }
+.slide__desc { margin: 0; font-size: 17px; color: var(--texto); }
+.slide__texto .botao { align-self: flex-start; margin-top: 6px; }
+.slideshow__seta { position: absolute; top: 50%; margin-top: -24px; width: 48px; height: 48px; border-radius: 999px; border: 1px solid var(--linha); background: rgba(255,254,250,.85); color: var(--tinta); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 2; }
+.slideshow__seta:hover { background: var(--cartao); }
+.slideshow__seta--ant { left: 20px; }
+.slideshow__seta--seg { right: 20px; }
+.slideshow__pontos { position: absolute; left: 0; right: 0; bottom: 14px; display: flex; justify-content: center; gap: 2px; z-index: 2; }
+.ponto { width: 44px; height: 44px; border: 0; background: transparent; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.ponto span { display: block; height: 8px; width: 8px; border-radius: 999px; background: rgba(44,58,74,.35); transition: width .3s; }
+.ponto[aria-current="true"] span { width: 28px; background: var(--tinta); }
+
+/* Botões */
+.botao { display: inline-block; text-decoration: none; font-family: var(--titulos); font-weight: 600; font-size: 15px; letter-spacing: .02em; padding: 13px 24px; border-radius: 999px; background: var(--tinta); color: #fff; border: 0; cursor: pointer; }
+.botao:hover { background: var(--tinta-escura); color: #fff; }
+.botao--claro { background: var(--cartao); color: var(--tinta); }
+.botao--claro:hover { background: var(--ouro-claro); color: var(--tinta); }
+.slide__texto .botao--claro, .cartao:not(.cartao--escuro) .botao--claro { background: var(--tinta); color: #fff; }
+.botao--pequeno { padding: 10px 18px; font-size: 14px; margin-top: 6px; }
+
+/* Destaque */
+.destaque { position: relative; z-index: 3; margin-top: 24px; background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); padding: 18px 26px; display: flex; flex-wrap: wrap; gap: 10px 24px; align-items: center; }
+.destaque p { margin: 0; flex: 1 1 360px; }
+.etiqueta { background: var(--ouro-claro); color: #5E4E22; font-family: var(--titulos); font-weight: 600; font-size: 12px; letter-spacing: .04em; padding: 6px 12px; border-radius: 999px; }
+
+/* Liturgia do dia */
+.liturgia { margin-top: 16px; background: var(--salvia-claro); border-radius: var(--raio); padding: 18px 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; color: var(--tinta); }
+.liturgia > svg { color: #5D7550; }
+.liturgia__texto { flex: 1 1 320px; min-width: 0; }
+.liturgia__rotulo { margin: 0; font-family: var(--titulos); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #4B6040; line-height: 1.4; }
+.liturgia__rotulo::after { display: none; }
+.liturgia__celebracao { margin: 2px 0 0; font-family: var(--serif); font-style: italic; font-size: 23px; line-height: 1.3; }
+
+/* Cartões e colunas */
+.cartao { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); padding: 26px; }
+.cartao h2 { font-size: 22px; margin-bottom: 10px; }
+.cartao--escuro { background: var(--tinta); border-color: var(--tinta); color: #EEF2F5; }
+.cartao--escuro h2 { color: #fff; }
+.cartao--escuro .botao--claro { background: var(--cartao); color: var(--tinta); }
+.pequeno { font-size: 15px; opacity: .92; }
+.duas-colunas { display: flex; flex-wrap: wrap; gap: 32px; padding-top: 56px; }
+.coluna-larga { flex: 2 1 560px; min-width: 0; }
+.coluna-estreita { flex: 1 1 300px; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+.bloco { padding-top: 56px; }
+.bloco:last-child { padding-bottom: 64px; }
+
+/* Missas */
+.filtro { display: flex; flex-wrap: wrap; gap: 8px; margin: -4px 0 14px; }
+.chip { font-family: var(--titulos); font-size: 13px; font-weight: 600; padding: 9px 16px; min-height: 40px; border-radius: 999px; border: 1px solid var(--linha); background: var(--cartao); color: var(--tinta); cursor: pointer; }
+.chip:hover { border-color: var(--rio); }
+.chip[aria-pressed="true"] { background: var(--tinta); border-color: var(--tinta); color: #fff; }
+.lista-missas { padding: 0; overflow: hidden; }
+.missa-item { border-bottom: 1px solid var(--linha); }
+.missa { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 24px; padding: 15px 24px; width: 100%; font: inherit; color: inherit; text-align: left; background: none; border: 0; }
+button.missa { cursor: pointer; }
+button.missa:hover { background: var(--papel); }
+.missa strong { min-width: 170px; color: var(--tinta); }
+.missa span:nth-child(2) { flex: 1 1 200px; }
+.missa__hora { color: var(--texto-suave); }
+.missa__seta { width: 10px; height: 10px; border-right: 2px solid var(--rio-escuro); border-bottom: 2px solid var(--rio-escuro); transform: rotate(45deg); margin: -4px 4px 0 4px; transition: transform .2s; }
+button.missa[aria-expanded="true"] .missa__seta { transform: rotate(-135deg); margin-top: 4px; }
+.intencoes { list-style: none; margin: 0; padding: 2px 24px 16px 48px; display: flex; flex-direction: column; gap: 6px; font-size: 16px; }
+.intencoes li { position: relative; }
+.intencoes li::before { content: ""; position: absolute; left: -16px; top: .7em; width: 5px; height: 5px; border-radius: 50%; background: var(--ouro); }
+.tipo { font-family: var(--titulos); font-size: 11px; font-weight: 600; letter-spacing: .04em; background: var(--ouro-claro); color: #5E4E22; padding: 2px 8px; border-radius: 999px; margin-right: 8px; }
+.mc, .nota { color: var(--texto-suave); }
+.lista-missas__rodape { display: flex; flex-wrap: wrap; gap: 12px; padding: 15px 24px; background: var(--rio-claro); align-items: center; justify-content: space-between; color: var(--texto-suave); font-size: 15px; }
+
+/* Notícias da Igreja */
+.noticias { margin-top: 36px; }
+.noticias > h2 { display: flex; align-items: center; gap: 14px; }
+.noticias > h2::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, var(--ouro) 0, var(--linha) 120px); }
+.lista-noticias { list-style: none; margin: 0; padding: 0; overflow: hidden; }
+.noticia { padding: 14px 24px; border-bottom: 1px solid var(--linha); display: flex; flex-direction: column; gap: 4px; }
+.noticia:last-child { border-bottom: 0; }
+.noticia--carregar { color: var(--texto-suave); }
+.noticia__topo { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+.noticia__data { color: var(--texto-suave); }
+.noticia__titulo { color: var(--tinta); font-weight: 600; text-decoration: none; line-height: 1.4; }
+.noticia__titulo:hover { color: var(--rio-escuro); text-decoration: underline; }
+.fonte { font-family: var(--titulos); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 3px 9px; border-radius: 999px; }
+.fonte--0 { background: var(--rio-claro); color: #2F5170; }
+.fonte--1 { background: var(--ouro-claro); color: #5E4E22; }
+.fonte--2 { background: var(--salvia-claro); color: #4B6040; }
+.noticias__nota { margin-top: 10px; color: var(--texto-suave); opacity: 1; }
+
+/* Grelhas */
+.grelha { display: grid; gap: 20px; }
+.grelha--4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.grelha--3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+
+.paroquia { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; display: flex; flex-direction: column; }
+.paroquia__foto { height: 160px; width: 100%; object-fit: cover; background: linear-gradient(180deg, var(--rio-claro), var(--salvia-claro)); }
+.paroquia__corpo { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 2px; }
+.paroquia__nome { margin: 0; font-size: 20px; font-weight: 600; color: var(--tinta); line-height: 1.2; }
+.paroquia__sub { color: var(--texto-suave); font-size: 15px; }
+.paroquia details { margin-top: 8px; font-size: 15px; }
+.paroquia summary { cursor: pointer; font-weight: 600; color: var(--rio-escuro); padding: 6px 0; }
+
+.aviso { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); overflow: hidden; display: flex; flex-direction: column; }
+.aviso__foto { height: 180px; width: 100%; object-fit: cover; }
+.aviso__corpo { padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; }
+.aviso__data { color: var(--texto-suave); font-size: 14px; }
+.aviso h3 { margin: 0; font-size: 18px; font-weight: 600; color: var(--tinta); }
+.aviso details summary { cursor: pointer; font-weight: 600; color: var(--rio-escuro); padding: 6px 0; }
+.texto-longo { white-space: pre-line; }
+.vazio { color: var(--texto-suave); }
+
+/* Papa */
+.papa .pequeno { color: var(--texto-suave); opacity: 1; }
+.papa__ligacao { display: inline-block; margin-top: 12px; font-size: 15px; }
+.papa .botao--pequeno { display: block; }
+
+/* Donativos */
+.intro { max-width: 720px; }
+.conta { background: var(--cartao); border: 1px solid var(--linha); border-radius: var(--raio); padding: 22px 24px; display: flex; flex-direction: column; gap: 6px; align-items: flex-start; }
+.conta__nome { margin: 0; font-size: 20px; font-weight: 600; color: var(--tinta); line-height: 1.2; }
+.conta__titular { color: var(--texto-suave); font-size: 15px; }
+.conta__rotulo { margin-top: 8px; font-family: var(--titulos); font-size: 11px; font-weight: 600; letter-spacing: .14em; color: var(--texto-suave); }
+.conta__iban { font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace; font-size: 15px; background: var(--papel); border: 1px solid var(--linha); border-radius: 8px; padding: 8px 10px; word-break: break-word; width: 100%; }
+.conta__vazio { color: var(--texto-suave); margin-top: 8px; }
+.conta__mbway { font-size: 15px; margin-top: 4px; }
+.nota-donativos { margin-top: 16px; color: var(--texto-suave); font-size: 15px; }
+
+/* Rodapé */
+.rodape { background: var(--tinta); color: #DCE3EA; margin-top: 24px; border-top: 4px solid var(--ouro); }
+.rodape .grelha { padding-top: 48px; padding-bottom: 32px; }
+.rodape .grelha > div { display: flex; flex-direction: column; gap: 4px; }
+.rodape strong { color: #fff; font-family: var(--titulos); font-weight: 600; font-size: 15px; letter-spacing: .04em; }
+.rodape a { color: #fff; font-weight: 400; }
+.creditos { padding-bottom: 32px; font-size: 14px; opacity: .8; margin: 0 auto; }
+
+/* Telemóvel */
+@media (max-width: 760px) {
+  .menu-botao { display: flex; }
+  .marca { flex: 1 1 0; }
+  .marca img { height: 38px; }
+  .marca__nome { font-size: 17px; }
+  .marca__sub { font-size: 11px; }
+  .menu { display: none; width: 100%; flex-direction: column; gap: 0; }
+  .menu.aberto { display: flex; }
+  .menu a { padding: 12px 0; border-top: 1px solid var(--linha); border-bottom: 0; }
+  .slideshow { height: 480px; min-height: 0; }
+  .slide__texto { left: 12px; right: 12px; width: auto; bottom: 56px; padding: 20px; }
+  .slide__titulo { font-size: 26px; }
+  .slide__desc { font-size: 16px; }
+  .slideshow__seta { display: none; }
+  .slideshow__pontos { bottom: 4px; }
+  .contentor { padding-left: 16px; padding-right: 16px; }
+  .destaque { padding: 18px; margin-top: 16px; }
+  .liturgia { padding: 18px; }
+  .duas-colunas { padding-top: 40px; }
+  .missa { display: grid; grid-template-columns: minmax(0, 1fr) auto auto; gap: 2px 14px; padding: 14px 18px; }
+  .missa strong { grid-column: 1 / -1; min-width: 0; }
+  .missa span:nth-child(2) { min-width: 0; }
+  .missa__seta { align-self: center; }
+  .intencoes { padding: 0 18px 14px 36px; }
+  h2 { font-size: 24px; }
+}

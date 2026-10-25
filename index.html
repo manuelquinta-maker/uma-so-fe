@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Uma Só Fé · Paróquias de Parada de Bouro, Soengas, Tabuaças e Vilar Chão</title>
+<meta name="description" content="Horário das missas, avisos, catequese e contactos das paróquias de São Julião de Parada de Bouro, São Martinho de Soengas, São Julião de Tabuaças e São Paio de Vilar Chão.">
+<link rel="icon" href="/logo-simbolo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Lora:ital@1&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/estilo.css">
+</head>
+<body>
+<a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+
+<header class="topo">
+  <div class="contentor topo__linha">
+    <a class="marca" href="/">
+      <img src="/logo-simbolo.png" alt="" width="99" height="46">
+      <span>
+        <span class="marca__nome">Uma Só Fé</span>
+        <span class="marca__sub">Parada de Bouro · Soengas · Tabuaças · Vilar Chão</span>
+      </span>
+    </a>
+    <button class="menu-botao" type="button" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <nav id="menu" class="menu" aria-label="Menu principal">
+      <a href="#horario">Horário das missas</a>
+      <a href="#paroquias">As paróquias</a>
+      <a href="#avisos">Avisos</a>
+      <a href="#catequese">Catequese</a>
+      <a href="#pedido">Pedido de missa</a>
+      <a href="#donativos">Donativos</a>
+      <a href="#contactos">Contactos</a>
+    </nav>
+  </div>
+</header>
+
+<main id="conteudo">
+  <h1 class="so-leitores">Uma Só Fé — Paróquias de São Julião de Parada de Bouro, São Martinho de Soengas, São Julião de Tabuaças e São Paio de Vilar Chão</h1>
+
+  <section class="slideshow" aria-roledescription="carrossel" aria-label="Destaques">
+    <div class="slideshow__faixa" id="slides" aria-live="polite"></div>
+    <button class="slideshow__seta slideshow__seta--ant" type="button" aria-label="Destaque anterior">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="slideshow__seta slideshow__seta--seg" type="button" aria-label="Destaque seguinte">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <div class="slideshow__pontos" id="pontos"></div>
+  </section>
+
+  <div class="contentor">
+    <div class="destaque" id="destaque" hidden>
+      <span class="etiqueta">Em destaque esta semana</span>
+      <p id="destaque-texto"></p>
+      <a href="#avisos">Todos os avisos</a>
+    </div>
+
+    <section id="liturgia" class="liturgia" aria-labelledby="liturgia-titulo" hidden>
+      <svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H4zM20 5h-6a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+      <div class="liturgia__texto">
+        <h2 id="liturgia-titulo" class="liturgia__rotulo">Liturgia do dia · <span id="liturgia-data"></span></h2>
+        <p id="liturgia-celebracao" class="liturgia__celebracao"></p>
+      </div>
+      <a id="liturgia-ligacao" class="botao" href="https://www.liturgia.pt/" target="_blank" rel="noopener">Ler as leituras</a>
+    </section>
+  </div>
+
+  <div class="contentor duas-colunas">
+    <section id="horario" class="coluna-larga">
+      <h2>Horário das missas</h2>
+      <div id="filtro-locais" class="filtro" role="group" aria-label="Filtrar por lugar de culto" hidden></div>
+      <div class="cartao lista-missas">
+        <div id="missas"></div>
+        <div class="lista-missas__rodape">
+          <span id="horario-nota">Atualizado semanalmente</span>
+          <a id="horario-pdf" href="#" hidden>Descarregar PDF</a>
+        </div>
+      </div>
+
+      <section id="noticias" class="noticias" aria-labelledby="noticias-titulo" hidden>
+        <h2 id="noticias-titulo">Notícias da Igreja</h2>
+        <ul class="cartao lista-noticias" id="lista-noticias" aria-busy="true">
+          <li class="noticia noticia--carregar">A carregar notícias…</li>
+        </ul>
+        <p class="pequeno noticias__nota">Notícias de <span id="noticias-fontes"></span>. Abrem no site de origem.</p>
+      </section>
+    </section>
+
+    <aside class="coluna-estreita">
+      <section id="papa" class="cartao papa" aria-labelledby="papa-titulo" hidden>
+        <h2 id="papa-titulo">Palavras do Papa</h2>
+        <div id="papa-conteudo">
+          <p class="pequeno">As publicações do Papa no X (@Pontifex_pt). Ao mostrar, o X pode guardar cookies no seu dispositivo.</p>
+          <button id="papa-mostrar" class="botao botao--pequeno" type="button">Mostrar publicações</button>
+          <a id="papa-ligacao" class="papa__ligacao" href="https://x.com/Pontifex_pt" target="_blank" rel="noopener">Abrir @Pontifex_pt no X</a>
+        </div>
+      </section>
+      <section id="catequese" class="cartao cartao--escuro">
+        <h2>Catequese</h2>
+        <p id="catequese-texto"></p>
+        <p id="catequese-horarios" class="pequeno"></p>
+        <a id="catequese-botao" class="botao botao--claro" href="#">Inscrever na catequese</a>
+      </section>
+      <section id="pedido" class="cartao">
+        <h2>Pedido de missa</h2>
+        <p>Descarregue o impresso, preencha e entregue no cartório ou na sacristia, após as celebrações.</p>
+        <a id="impresso" href="#">Descarregar impresso</a>
+      </section>
+    </aside>
+  </div>
+
+  <section id="paroquias" class="contentor bloco">
+    <h2>As nossas paróquias</h2>
+    <div class="grelha grelha--4" id="lista-paroquias"></div>
+  </section>
+
+  <section id="avisos" class="contentor bloco">
+    <h2>Avisos e notícias</h2>
+    <div class="grelha grelha--3" id="lista-avisos"></div>
+  </section>
+
+  <section id="donativos" class="contentor bloco">
+    <h2>Donativos</h2>
+    <p id="donativos-texto" class="intro"></p>
+    <div class="grelha grelha--4" id="lista-contas"></div>
+    <p class="nota-donativos"><span id="donativos-descritivo"></span> <span id="donativos-recibo"></span></p>
+  </section>
+
+</main>
+
+<footer id="contactos" class="rodape">
+  <div class="contentor grelha grelha--3">
+    <div><strong>Pároco</strong><span id="c-paroco"></span></div>
+    <div><strong>Cartório</strong><span id="c-cartorio"></span><span id="c-morada"></span></div>
+    <div><strong>Contactos</strong><a id="c-telefone" href="#"></a><a id="c-email" href="#"></a><a id="c-mapa" href="#" hidden>Ver no mapa</a></div>
+  </div>
+  <p class="contentor creditos">Uma Só Fé · Pe. Manuel Quinta · Arquidiocese de Braga</p>
+</footer>
+
+<script src="/site.js" defer></script>
+</body>
+</html>

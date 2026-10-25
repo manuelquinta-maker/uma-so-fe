@@ -1,0 +1,8 @@
+{
+  "mostrar": true,
+  "quantidade": 6,
+  "fontes": [
+    { "nome": "Agência Ecclesia", "feed": "https://agencia.ecclesia.pt/portal/feed/" },
+    { "nome": "Braga", "feed": "https://agencia.ecclesia.pt/portal/?s=Braga&feed=rss2" }
+  ]
+}
