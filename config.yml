@@ -1,11 +1,11 @@
 # Backoffice das Paróquias (Decap CMS)
-# Já preenchido para manuelquinta-maker/uma-so-fe e uma-so-fe.manuel-quinta.workers.dev
+# Já preenchido para manuelquinta-maker/uma-so-fe e uma-so-fe.umasofe.workers.dev
 
 backend:
   name: github
   repo: manuelquinta-maker/uma-so-fe           # ALTERAR: o seu utilizador GitHub / nome do repositório
   branch: main
-  base_url: https://uma-so-fe.manuel-quinta.workers.dev # ALTERAR: o endereço que o Cloudflare lhe der
+  base_url: https://uma-so-fe.umasofe.workers.dev # ALTERAR: o endereço que o Cloudflare lhe der
   auth_endpoint: api/auth
   commit_messages:
     update: "Atualizar {{collection}} ({{slug}})"

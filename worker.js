@@ -205,7 +205,7 @@ const noticias = (() => {
     }).filter((i) => i.titulo && /^https?:\/\//i.test(i.ligacao));
   }
 
-  async function onRequestGet({ request }) {
+  async function onRequestGet({ request, env }) {
     const cache = caches.default;
     const chave = new Request(new URL('/api/noticias', request.url).toString());
     const guardado = await cache.match(chave);
@@ -213,7 +213,9 @@ const noticias = (() => {
 
     let config = {};
     try {
-      const r = await fetch(new URL('/noticias.json', request.url).toString());
+      // Lê a configuração por dentro (um Worker não pode pedir ficheiros a si próprio pela internet)
+      const pedido = new Request(new URL('/noticias.json', request.url).toString());
+      const r = env && env.ASSETS ? await env.ASSETS.fetch(pedido) : await fetch(pedido);
       if (r.ok) config = await r.json();
     } catch (e) { /* sem configuração: lista vazia */ }
 
