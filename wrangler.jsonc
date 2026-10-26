@@ -3,6 +3,8 @@
   "name": "uma-so-fe",
   "main": "worker.js",
   "compatibility_date": "2026-10-01",
+  // Mantém as variáveis criadas no painel do Cloudflare em cada nova publicação
+  "keep_vars": true,
   "assets": {
     "directory": "./",
     "binding": "ASSETS",
